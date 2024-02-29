@@ -30,7 +30,7 @@ const App: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <img src="img/logo.jpg" alt="logo" style={{ height: 35, width: 35 }} />
+        <img src="img/logo.jpg" alt="logo" style={{ height: 36, width: 35 }} />
         <Menu
           theme="dark"
           mode="horizontal"
