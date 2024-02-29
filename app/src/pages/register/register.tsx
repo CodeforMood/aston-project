@@ -1,9 +1,14 @@
 import React from 'react';
+import CustomForm from '../../components/CustomForm/CustomForm';
 
 function Register() {
 
   return (
-    <h1> Регистрация </h1>
+
+    <>
+     <CustomForm/>
+    </>
+
   );
 };
 
