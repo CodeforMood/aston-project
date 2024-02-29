@@ -1,6 +1,6 @@
 import React from 'react';
 import {Layout, Menu } from 'antd';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page'
 import Favourites from '../../pages/favourites/favourites'
 import History from '../../pages/history/history'
@@ -37,6 +37,7 @@ const App: React.FC = () => {
           items={items}
           style={{ flex: 1, minWidth: 0, justifyContent: 'right', }}
         />
+         <Link to={'/sign-up'}>Reg</Link>
       </Header>
 
       <Routes>
