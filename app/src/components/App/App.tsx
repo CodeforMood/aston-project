@@ -3,10 +3,10 @@ import {Layout, Menu } from 'antd';
 import { Routes, Route, Link } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page'
 import Favourites from '../../pages/favourites/Favourites'
-import History from '../../pages/history/history'
 import Register from '../../pages/register/register';
 import Login from '../../pages/login/login';
 import PageNotFound from '../../pages/page-not-found/page-not-found'
+import History from '../../pages/history/History';
 
 
 const { Header, Footer } = Layout;
