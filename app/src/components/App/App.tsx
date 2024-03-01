@@ -2,7 +2,7 @@ import React from 'react';
 import {Layout, Menu } from 'antd';
 import { Routes, Route, Link } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page'
-import Favourites from '../../pages/favourites/favourites'
+import Favourites from '../../pages/favourites/Favourites'
 import History from '../../pages/history/history'
 import Register from '../../pages/register/register';
 import Login from '../../pages/login/login';
@@ -37,7 +37,31 @@ const App: React.FC = () => {
           items={items}
           style={{ flex: 1, minWidth: 0, justifyContent: 'right', }}
         />
-         <Link to={'/sign-up'}>Reg</Link>
+        <Link 
+          to={'/sign-up'}
+          style={{
+            color: 'white',
+          }}
+        >
+          Регистрация
+        </Link>
+        <Link 
+          to={'/favourites'} 
+          style={{
+            margin: '10px',
+            color: 'white',
+          }}
+        >
+          Избранное
+        </Link>
+        <Link 
+          to={'/history'}
+          style={{
+            color: 'white',
+          }}
+        >
+          История поиска
+        </Link>
       </Header>
 
       <Routes>
