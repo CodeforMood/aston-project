@@ -8,12 +8,15 @@ import PageNotFound from '../../pages/page-not-found/page-not-found'
 import History from '../../pages/history/history';
 import { Routes, Route } from 'react-router-dom';
 import { HeaderNav } from '../header-nav/header-nav';
+import { Provider } from 'react-redux';
+import { store } from '../../store';
 
 const { Footer } = Layout;
 
 const App: React.FC = () => {
 
   return (
+    <Provider store={store}>
     <Layout style={{ minHeight: '100vh', gap: '20px' }}>
       <HeaderNav />
 
@@ -30,6 +33,7 @@ const App: React.FC = () => {
         ©{new Date().getFullYear()}
       </Footer>
     </Layout>
+    </Provider>
   );
 };
 

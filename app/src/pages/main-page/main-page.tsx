@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Layout, theme, Button, Row, Col } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import Search from 'antd/es/input/Search';
 import Meta from 'antd/es/card/Meta';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useActions } from '../../hooks/useActions';
+
 const { Content } = Layout;
 
 function MainPage() {
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const {movies, error, loading} = useTypedSelector(state => state.movies);
+  const {fetchMovies} = useActions()
+  
+
+  useEffect(() => {
+    fetchMovies()
+  }, [])
+
+  console.log(movies);
 
   return (
     <>
