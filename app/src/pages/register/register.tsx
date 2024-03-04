@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomForm from '../../components/CustomForm/CustomForm';
+import CustomForm from '../../components/custom-form/custom-form';
 
 function Register() {
 
