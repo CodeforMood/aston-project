@@ -1,11 +1,11 @@
 import { Dispatch } from "redux"
 import { MoviesAction, MoviesActionTypes } from "../../types/movies"
 
-export const fetchMovies = () => {
+export const fetchMovies = (keyword: string) => {
   return async (dispatch: Dispatch<MoviesAction>) => {
     try {
       dispatch({type: MoviesActionTypes.FETCH_MOVIES})
-      const response = await fetch('https://search.imdbot.workers.dev/?q=Niram');
+      const response = await fetch(`https://search.imdbot.workers.dev/?q=${keyword}`);
       const json = await response.json();
       const movies = await json.description;
       // console.log(movies);

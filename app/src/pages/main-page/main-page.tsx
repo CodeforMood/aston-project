@@ -19,7 +19,7 @@ function MainPage() {
   
 
   useEffect(() => {
-    fetchMovies()
+    fetchMovies('Niram')
   }, [])
 
   console.log(movies);
@@ -31,6 +31,7 @@ function MainPage() {
         allowClear
         enterButton="Search"
         size="large"
+        onSearch={()=>console.log('hi')}
       />
       <Content style={{ padding: '0 48px', flexGrow: 1, display: 'flex', flexDirection: 'column', }}>
         <div
