@@ -1,14 +1,13 @@
-import './custom-form.css'
+import './sign-up-page.css'
 import { Button, FormControl, FormGroup, FormLabel, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useAuthActions } from '../../hooks/useActions';
+import { useNavigate } from 'react-router-dom';
 
-type CustomFormProps = {
-  pageName: string,
-}
-
-
-function CustomForm({pageName}: CustomFormProps) {
+function SignUpPage() {
+  const {signUpAction} = useAuthActions();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -25,7 +24,8 @@ function CustomForm({pageName}: CustomFormProps) {
         .required('Password is required!')
       }),
       onSubmit: (values) => {
-        console.log('onSubmit', values)
+        signUpAction(values.email, values.password);
+        navigate("/");
       }
     });
 
@@ -73,4 +73,4 @@ function CustomForm({pageName}: CustomFormProps) {
   )
 }
 
-export default CustomForm
+export default SignUpPage;

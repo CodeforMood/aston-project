@@ -2,5 +2,6 @@ export enum AppRoute {
     Root = '/',
     SignUp = '/sign-up',
     History = '/history',
-    Favourites = '/favourites'
-  }
+    Favourites = '/favourites',
+    SignIn = '/sign-in'
+}

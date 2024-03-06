@@ -1,0 +1,21 @@
+.form {
+    margin:0 auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    max-width:800px;
+    border-radius: 8px;
+    border: 1px solid #c9cbcc;
+    box-shadow: 10px 5px 5px  #979899;
+    
+
+}
+
+
+p{
+    color:#8f1b1b;
+    font-weight: 500;
+}

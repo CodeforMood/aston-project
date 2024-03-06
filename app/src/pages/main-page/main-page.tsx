@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Layout, theme, Row } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { useActions } from '../../hooks/useActions';
+import { useMovieActions } from '../../hooks/useActions';
 import FilmCard from '../../components/film-card/film-card';
 import SearchForm from '../../components/search-form/search-from';
 
@@ -13,8 +13,8 @@ function MainPage() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const {movies, error, loading} = useTypedSelector(state => state.movies);
-  const {fetchMovies} = useActions()
+  const {movies} = useTypedSelector(state => state.movies);
+  const {fetchMovies} = useMovieActions()
   
 
   useEffect(() => {
