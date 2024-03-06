@@ -7,21 +7,21 @@ import SearchForm from '../../components/search-form/search-from';
 
 const { Content } = Layout;
 
-function MainPage() {
+const MainPage: React.FC = () => {
 
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const {movies, error, loading} = useTypedSelector(state => state.movies);
-  const {fetchMovies} = useActions()
-  
+  const { movies, error, loading } = useTypedSelector(state => state.movies);
+  const { fetchMovies } = useActions()
+
 
   useEffect(() => {
-    fetchMovies('Niram')
+    fetchMovies('')
   }, [])
 
-  console.log(movies);
+  // console.log(movies);
 
   return (
     <>
@@ -37,7 +37,9 @@ function MainPage() {
           }}
         >
           <Row gutter={[36, 36]}>
-            {movies.map((movie) => <FilmCard movie={movie} />)}
+            {movies.map((movie: object, index: number) =>
+              <FilmCard key={index} movie={movie} />
+            )}
           </Row>
         </div>
       </Content>
