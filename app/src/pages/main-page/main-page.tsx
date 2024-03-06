@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { Card, Layout, theme, Button, Row, Col } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
-import Search from 'antd/es/input/Search';
-import Meta from 'antd/es/card/Meta';
+import { useEffect } from 'react';
+import { Layout, theme, Row } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
+import FilmCard from '../../components/film-card/film-card';
+import SearchForm from '../../components/search-form/search-from';
 
 const { Content } = Layout;
 
@@ -26,13 +25,7 @@ function MainPage() {
 
   return (
     <>
-      <Search style={{ padding: '0 48px', }}
-        placeholder="input search text"
-        allowClear
-        enterButton="Search"
-        size="large"
-        onSearch={()=>console.log('hi')}
-      />
+      <SearchForm />
       <Content style={{ padding: '0 48px', flexGrow: 1, display: 'flex', flexDirection: 'column', }}>
         <div
           style={{
@@ -44,144 +37,12 @@ function MainPage() {
           }}
         >
           <Row gutter={[36, 36]}>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320, }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
-              <Card
-                hoverable
-                style={{ minWidth: 180, maxWidth: 320 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                  <Button icon={<HeartOutlined />} />
-                  <Meta title="TITLE" />
-                </div>
-              </Card>
-            </Col>
+            {movies.map((movie) => <FilmCard movie={movie} />)}
           </Row>
-
         </div>
       </Content>
     </>
   );
 };
 
-export default MainPage;
+export default MainPage
