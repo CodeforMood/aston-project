@@ -16,7 +16,7 @@ const { Footer } = Layout;
 const App: React.FC = () => {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const {authStatus} = useTypedSelector(state => state.auth);
+  const { authStatus } = useTypedSelector(state => state.auth);
 
 
   const isAuthenticated = (): boolean => {
@@ -27,37 +27,44 @@ const App: React.FC = () => {
     setLoggedIn(isAuthenticated());
   }, [authStatus]);
 
- console.log(typeof loggedIn);
+  console.log(loggedIn);
 
   return (
     <Layout style={{ minHeight: '100vh', gap: '20px' }}>
       <HeaderNav />
 
       <Routes>
+        <Route path="/sign-up" element={authStatus !== 'AUTH' ? <SignUpPage /> : <MainPage />} />
+        <Route path="/sign-in" element={authStatus !== 'AUTH' ? <SignInPage /> : <MainPage />} />
 
-        <Route path="/sign-up" element={authStatus !== 'AUTH' ? <SignUpPage />: <MainPage />} />
-        <Route path="/sign-in" element={authStatus !== 'AUTH' ? <SignInPage />: <MainPage />} />
+        <Route path="/" element={
+          <ProtectedRoute
+            element={<MainPage />}
+            componentName="MainPage"
+            loggedIn={loggedIn}
+          />}
+        />
 
+        <Route path="/favourites" element={
+          <ProtectedRoute
+            element={<Favourites />}
+            componentName="Favourites"
+            loggedIn={loggedIn}
+          />}
+        />
 
-        <Route path="/" element={<MainPage />} />
-
-        {/* <Route path="/movies" element={
-            <ProtectedRoute
-              Element={Favourites}
-              loggedIn={loggedIn}
-            />}
-          /> */}
-
-
-
-
-        <Route path="/favourites" element={<Favourites />} />
-        <Route path="/history" element={<History />} />
+        <Route path="/history" element={
+          <ProtectedRoute
+            element={<History />}
+            componentName="History"
+            loggedIn={loggedIn}
+          />}
+        />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    
-      <Footer style={{ textAlign: 'center', background: 'black', color: 'white'}}>
+
+      <Footer style={{ textAlign: 'center', background: 'black', color: 'white' }}>
         ©{new Date().getFullYear()}
       </Footer>
     </Layout>
