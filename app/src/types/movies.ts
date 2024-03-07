@@ -4,6 +4,21 @@ export interface MoviesState {
   error: null | string,
 };
 
+// интерфейс одного фильма
+export interface Movie {
+  '#ACTORS': string,
+  '#AKA': string,
+  '#IMDB_ID': string,
+  '#IMDB_IV': string,
+  '#IMDB_URL': string,
+  '#IMG_POSTER': string,
+  '#RANK': number,
+  '#TITLE': string,
+  '#YEAR': number,
+  'photo_height': number,
+  'photo_width': number,
+}
+
 export enum MoviesActionTypes {
   FETCH_MOVIES = "FETCH_MOVIES",
   FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS",
