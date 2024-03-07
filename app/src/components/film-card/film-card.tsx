@@ -2,21 +2,19 @@ import { HeartOutlined } from "@ant-design/icons";
 import { Button, Card, Col} from "antd";
 import Meta from "antd/es/card/Meta";
 
-type MoviesProps = {
-  movie: []
-}
 
-function FilmCard({movie}: MoviesProps) {
+const FilmCard: React.FC<{ movie: any }> = (props) => {
+
   return (
     <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
       <Card
         hoverable
         style={{ minWidth: 180, maxWidth: 320, }}
-        cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+        cover={<img alt="example" src={props.movie['#IMG_POSTER']} />}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
           <Button icon={<HeartOutlined />} />
-          <Meta title="TITLE" />
+          <Meta title={props.movie['#TITLE']} />
         </div>
       </Card>
     </Col>
