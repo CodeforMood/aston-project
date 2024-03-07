@@ -2,7 +2,6 @@ import { Dispatch } from "redux"
 import { AuthAction, authActionTypes } from "../../types/auth";
 import { getCurrentUserLogin, signIn, signOut, signUp } from "../../services/services";
 import {  toast } from "react-toastify";
-import { redirect } from "react-router-dom";
 
 export const signInAction = (login: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
@@ -11,7 +10,7 @@ export const signInAction = (login: string, password: string) => {
       dispatch({type: authActionTypes.SIGN_IN, payload: login})
 
     } catch (error:any) {
-      toast.warn(error)
+      toast.warn(error.message)
     }
   }
 }
@@ -20,12 +19,10 @@ export const signUpAction = (login: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       signUp(login, password);
-
       dispatch({type: authActionTypes.SIGN_UP, payload: login})
-      return redirect("/");
 
     } catch (error:any) {
-      toast.warn(error)
+      toast.warn(error.message)
     }
   }
 }
@@ -42,7 +39,6 @@ export const checkAuthAction = () => {
     const currentUser = getCurrentUserLogin()
     if(currentUser) {
       dispatch({type: authActionTypes.SIGN_IN, payload: currentUser})
-    }
-    
+    }   
   }
 }

@@ -1,7 +1,6 @@
 export function signUp(login: string, password: string) {
   console.log(localStorage.getItem(login))
   if(localStorage.getItem(login)) {
-    alert("Пользователь с таким именем уже есть")
     throw new Error("Пользователь с таким именем уже есть");
   }
   localStorage.setItem(

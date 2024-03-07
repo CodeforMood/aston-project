@@ -3,12 +3,9 @@ import { Button, FormControl, FormGroup, FormLabel, TextField } from '@mui/mater
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAuthActions } from '../../hooks/useActions';
-import { useNavigate } from 'react-router-dom';
 
 function SignUpPage() {
   const {signUpAction} = useAuthActions();
-  const navigate = useNavigate();
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -25,7 +22,6 @@ function SignUpPage() {
       }),
       onSubmit: (values) => {
         signUpAction(values.email, values.password);
-        navigate("/");
       }
     });
 

@@ -1,5 +1,3 @@
-import { CurrentUserInfo } from "./currentUserInfo";
-
 export interface AuthState {
   authStatus: string,
   currentUser: string
