@@ -13,11 +13,12 @@ const MainPage: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const { movies, error, loading } = useTypedSelector(state => state.movies);
+  const { movies } = useTypedSelector(state => state.movies);
   const { fetchMovies } = useActions()
 
   useEffect(() => {
     fetchMovies('')
+    // eslint-disable-next-line
   }, [])
 
   // console.log(movies);

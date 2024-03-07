@@ -4,6 +4,10 @@ import './index.css';
 import 'antd/dist/antd'
 import { BrowserRouter } from 'react-router-dom';
 import App from './components/app/app';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +15,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
-    </BrowserRouter>
+      <ToastContainer />
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
   </React.StrictMode>
 );
