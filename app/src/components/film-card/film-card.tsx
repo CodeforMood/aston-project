@@ -2,7 +2,9 @@ import { HeartOutlined } from "@ant-design/icons";
 import { Button, Card, Col} from "antd";
 import Meta from "antd/es/card/Meta";
 
+
 const FilmCard: React.FC<{ movie: any }> = (props) => {
+
   return (
     <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
       <Card

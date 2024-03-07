@@ -7,7 +7,7 @@ const initialState: MoviesState = {
 };
 
 export const moviesReducer = (state = initialState, action: MoviesAction): any => {
-  // console.log(state);
+  console.log(state);
   switch (action.type) {
     case MoviesActionTypes.FETCH_MOVIES:
       return { ...state, loading: true, error: null, movies: [] }

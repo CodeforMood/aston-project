@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Layout, theme, Row } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { useActions } from '../../hooks/useActions';
 import FilmCard from '../../components/film-card/film-card';
 import SearchForm from '../../components/search-form/search-from';
+import { useActions } from '../../hooks/useActions';
 
 const { Content } = Layout;
 
@@ -15,7 +15,6 @@ const MainPage: React.FC = () => {
 
   const { movies, error, loading } = useTypedSelector(state => state.movies);
   const { fetchMovies } = useActions()
-
 
   useEffect(() => {
     fetchMovies('')
