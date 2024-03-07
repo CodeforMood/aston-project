@@ -4,7 +4,7 @@ import Meta from "antd/es/card/Meta";
 import { Movie } from "../../types/movies";
 
 const FilmCard: React.FC<{ movie: Movie }> = (props) => {
-  console.log(props);
+  // console.log(props);
 
   return (
     <Col xxl={6} xl={8} lg={12} md={16} sm={20} xs={24}>
