@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { Layout, theme, Row } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useActions } from '../../hooks/useActions';
 import FilmCard from '../../components/film-card/film-card';
 import SearchForm from '../../components/search-form/search-from';
-import { useActions } from '../../hooks/useActions';
+import { Movie } from '../../types/movies';
 
 const { Content } = Layout;
 
@@ -13,12 +14,12 @@ const MainPage: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const { movies } = useTypedSelector(state => state.movies);
+  const { movies, error, loading } = useTypedSelector(state => state.movies);
   const { fetchMovies } = useActions()
+
 
   useEffect(() => {
     fetchMovies('')
-    // eslint-disable-next-line
   }, [])
 
   // console.log(movies);
@@ -37,7 +38,7 @@ const MainPage: React.FC = () => {
           }}
         >
           <Row gutter={[36, 36]}>
-            {movies.map((movie: object, index: number) =>
+            {movies.map((movie: Movie, index: number) =>
               <FilmCard key={index} movie={movie} />
             )}
           </Row>
