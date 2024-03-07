@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux"
 import * as MoviesActionCreators from  '../store/action-creators/movies'
 import * as AuthActionCreator from  '../store/action-creators/auth-actions'
 
-export const useMovieActions = () => {
+export const useActions = () => {
   const dispatch = useDispatch()
   return bindActionCreators(MoviesActionCreators, dispatch)
 }

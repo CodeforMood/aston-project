@@ -7,4 +7,3 @@ import { AuthAction } from '../types/auth';
  
 
 export const store = createStore<RootState, MoviesAction, AuthAction>(rootReducer, applyMiddleware(thunk));
-
