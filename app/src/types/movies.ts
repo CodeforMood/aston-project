@@ -25,16 +25,16 @@ export enum MoviesActionTypes {
   FETCH_MOVIES_ERROR = "FETCH_MOVIES_ERROR"
 };
 
-interface FetchMoviesAction {
+export interface FetchMoviesAction {
   type: MoviesActionTypes.FETCH_MOVIES,
 };
 
-interface FetchMoviesSuccessAction {
+export interface FetchMoviesSuccessAction {
   type: MoviesActionTypes.FETCH_MOVIES_SUCCESS,
   payload: any[],
 };
 
-interface FetchMoviesErrorAction {
+export interface FetchMoviesErrorAction {
   type: MoviesActionTypes.FETCH_MOVIES_ERROR,
   payload: string,
 };

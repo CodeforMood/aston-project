@@ -1,57 +1,63 @@
 import { RestOutlined } from '@ant-design/icons';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Movie } from '../../types/movies';
+import { deleteFavouritesAction } from '../../store/actions/favourites-actions';
+import { RootState } from '../../store/reducers';
 
-const someDate = [
-  { "id": 1, "url": "http://example.com/film1", "title": "Форсаж", "description": "Коп под прикрытием внедряется в банду стритрейсеров и становится одним из них. Первая часть гоночной франшизы", 'src': 'https://w.forfun.com/fetch/ed/ed16411652a506979f8d2c25bd9439ef.jpeg', 'raiting': '7.9' },
-  { "id": 2, "url": "http://example.com/film2", "title": "Форсаж 2", "description": "Коп под прикрытием внедряется в банду стритрейсеров и становится одним из них. Первая часть гоночной франшизы", 'src': 'https://w.forfun.com/fetch/ed/ed16411652a506979f8d2c25bd9439ef.jpeg', 'raiting': '7.9' },
-  { "id": 3, "url": "http://example.com/film3", "title": "Форсаж 3", "description": "Коп под прикрытием внедряется в банду стритрейсеров и становится одним из них. Первая часть гоночной франшизы", 'src': 'https://w.forfun.com/fetch/ed/ed16411652a506979f8d2c25bd9439ef.jpeg', 'raiting': '7.9' }
-];
+const Favourites: React.FC = () => {
+  let dispatch = useDispatch();
+  let { favourites } = useSelector((state: RootState) => state.favourites);
 
-function Favourites() {
+  const deleteFavourites = (id: string) => {
+    dispatch(deleteFavouritesAction(id));
+  }
+
   return (
-    <div 
+    <div
       style={{
         display: 'block',
         padding: '40px',
         fontWeight: 'bold',
         fontSize: '25px',
-        height: 'calc(100vh - 171px)',
+        minHeight: 'calc(100vh - 171px)',
       }}
     >
       Буду смотреть
       <ul>
-        {someDate.map(item => 
-          <li 
-            key={item.id}
+        {favourites.map((item: Movie) =>
+          <li
+            key={item['#IMDB_ID']}
             style={{
               display: 'flex',
               marginBottom: '20px',
-              position: 'relative'            
+              position: 'relative',
             }}
           >
-            <img 
-              src={item.src} 
+            <img
+              src={item['#IMG_POSTER']}
               style={{
                 width: 250,
                 borderRadius: 5,
-              }} 
-              alt="форсаж" 
+                cursor: 'pointer',
+              }}
+              alt="форсаж"
             />
-            <span 
+            <span
               style={{
-                position: 'absolute', 
+                position: 'absolute',
                 left: 7,
                 top: 7,
-                fontSize: 18, 
-                backgroundColor: 'lightgreen', 
+                fontSize: 18,
+                backgroundColor: 'lightgreen',
                 padding: '2px 7px',
                 borderRadius: 5,
               }}
             >
-              {item.raiting}
+              {item['#RANK']}
             </span>
             <div>
-              <p 
+              <p
                 style={{
                   margin: '0 0 0 20px',
                   color: 'black',
@@ -59,27 +65,28 @@ function Favourites() {
                   fontSize: 22,
                 }}
               >
-                {item.title}
+                {item['#AKA']}
               </p>
-              <p 
+              <p
                 style={{
                   margin: '0 0 0 20px',
                   color: 'black',
-                  fontSize: 13,
+                  fontSize: 15,
                   marginTop: 30,
                   fontWeight: 400
                 }}
               >
-                {item.description}
+                {`В главных ролях: ${item['#ACTORS']}`}
               </p>
             </div>
 
-            <button style={{border: 'none', background: 'none', cursor: 'pointer', position: 'absolute', right: 0}}>
-              {<RestOutlined 
-                style={{ 
-                  fontSize: 20, 
+            <button style={{ border: 'none', background: 'none', cursor: 'pointer', position: 'absolute', right: 0 }}>
+              {<RestOutlined
+                style={{
+                  fontSize: 20,
                   color: 'black',
-                  }}
+                }}
+                onClick={() => deleteFavourites(item['#IMDB_ID'])}
               />}
             </button>
           </li>
@@ -88,5 +95,6 @@ function Favourites() {
     </div>
   );
 };
+
 
 export default Favourites;

@@ -2,10 +2,10 @@ import { AuthAction, AuthState, authActionTypes, AuthStatus } from "../../types/
 
 const initialState: AuthState = {
   currentUser:'',
-  authStatus: AuthStatus.NO_AUTH,
+  authStatus: AuthStatus.AUTH,
 };
 
-export const authReducer = (state = initialState, action: AuthAction): any => {
+export const authReducer = (state = initialState, action: AuthAction): AuthState => {
   // console.log(state);
   switch (action.type) {
     case authActionTypes.SIGN_IN:

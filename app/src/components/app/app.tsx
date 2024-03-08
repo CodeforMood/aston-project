@@ -10,6 +10,8 @@ import SignUpPage from '../../pages/sign-up-page/sign-up-page';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { AppRoute } from '../../const';
+import MovieDetail from '../../pages/movie-detail/movie-detail';
 
 const { Footer } = Layout;
 
@@ -27,8 +29,6 @@ const App: React.FC = () => {
     setLoggedIn(isAuthenticated());
   }, [authStatus]);
 
-  console.log(loggedIn);
-
   return (
     <Layout style={{ minHeight: '100vh', gap: '20px' }}>
       <HeaderNav />
@@ -37,7 +37,7 @@ const App: React.FC = () => {
         <Route path="/sign-up" element={authStatus !== 'AUTH' ? <SignUpPage /> : <MainPage />} />
         <Route path="/sign-in" element={authStatus !== 'AUTH' ? <SignInPage /> : <MainPage />} />
 
-        <Route path="/" element={
+        <Route path={AppRoute.Root} element={
           <ProtectedRoute
             element={<MainPage />}
             componentName="MainPage"
@@ -45,7 +45,7 @@ const App: React.FC = () => {
           />}
         />
 
-        <Route path="/favourites" element={
+        <Route path={AppRoute.Favourites} element={
           <ProtectedRoute
             element={<Favourites />}
             componentName="Favourites"
@@ -53,10 +53,18 @@ const App: React.FC = () => {
           />}
         />
 
-        <Route path="/history" element={
+        <Route path={AppRoute.History} element={
           <ProtectedRoute
             element={<History />}
             componentName="History"
+            loggedIn={loggedIn}
+          />}
+        />
+
+        <Route path={AppRoute.MovieDetail} element={
+          <ProtectedRoute
+            element={<MovieDetail />}
+            componentName="movieDetail"
             loggedIn={loggedIn}
           />}
         />

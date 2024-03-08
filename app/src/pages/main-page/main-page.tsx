@@ -22,7 +22,7 @@ const MainPage: React.FC = () => {
     fetchMovies('')
   }, [])
 
-  // console.log(movies);
+  console.log(movies);
 
   return (
     <>
