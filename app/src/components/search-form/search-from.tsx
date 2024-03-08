@@ -1,10 +1,12 @@
 import { AutoComplete, Input, SelectProps } from "antd";
 import { useState } from "react";
 import { useActions } from '../../hooks/useActions';
+import { useDispatch } from "react-redux";
+import { AddHistoryAction } from "../../store/actions/histiry-actions";
 
 const SearchForm: React.FC = () => {
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
-
+  const dispatch = useDispatch()
   const { fetchMovies } = useActions()
 
   const handleSearch = (value: string) => {
@@ -12,7 +14,9 @@ const SearchForm: React.FC = () => {
   };
 
   const test = (value: string) => {
+    let currentTime = new Date().toLocaleString()
     fetchMovies(value);
+    dispatch(AddHistoryAction(value, currentTime.toString()))
   };
 
   return (

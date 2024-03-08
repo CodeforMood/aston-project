@@ -5,6 +5,8 @@ import { rootReducer } from './reducers';
 import { RootState } from './reducers'
 import { MoviesAction } from '../types/movies';
 import { AuthAction } from '../types/auth';
- 
+import { historyActions } from '../types/history';
+import { favouritesActions } from '../types/favourites';
+import { Action } from '../types';
 
-export const store = createStore<RootState, MoviesAction, AuthAction>(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore<any, any, {}, {}>(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
