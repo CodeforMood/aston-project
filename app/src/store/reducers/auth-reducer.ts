@@ -2,7 +2,7 @@ import { AuthAction, AuthState, authActionTypes, AuthStatus } from "../../types/
 
 const initialState: AuthState = {
   currentUser:'',
-  authStatus: AuthStatus.AUTH,
+  authStatus: AuthStatus.NO_AUTH,
 };
 
 export const authReducer = (state = initialState, action: AuthAction): AuthState => {
