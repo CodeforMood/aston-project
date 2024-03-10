@@ -1,6 +1,19 @@
+import { Dispatch } from 'redux';
+import { deleteFavoritesMoviesInLS, setFavoritesMoviesInLS } from '../../services/services';
 import { Movie } from '../../types/movies';
-import { favouritesActionTypes } from './../../types/favourites';
+import { favouritesActions, favouritesActionTypes } from './../../types/favourites';
 
-export const addFavouritesAction = (value: Movie) => ({ type: favouritesActionTypes.ADD_FAVOURITES, payload: value});
+export const addFavouritesAction = (value: Movie) => {
+    return (dispatch: Dispatch<favouritesActions>) => {
+      setFavoritesMoviesInLS(value)
 
-export const deleteFavouritesAction = (value: string) => ({ type: favouritesActionTypes.DELETE_FAVOURITES, payload: value });
+      dispatch({ type: favouritesActionTypes.ADD_FAVOURITES, payload: value})
+    }
+  }
+
+  export const deleteFavouritesAction = (value: string) => {
+    return (dispatch: Dispatch<favouritesActions>) => {
+      deleteFavoritesMoviesInLS(value);
+      dispatch({ type: favouritesActionTypes.DELETE_FAVOURITES, payload: value});
+    }
+  }

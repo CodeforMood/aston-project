@@ -1,4 +1,5 @@
-import { Dispatch } from "redux"
+
+import { Dispatch } from "redux";
 import { FetchMoviesAction, FetchMoviesErrorAction, FetchMoviesSuccessAction, Movie, MoviesAction, MoviesActionTypes } from "../../types/movies"
 
 export const fetchMoviesRequest: () => FetchMoviesAction = () => ({ type: MoviesActionTypes.FETCH_MOVIES});

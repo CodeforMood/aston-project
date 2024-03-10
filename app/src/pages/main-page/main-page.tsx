@@ -22,8 +22,6 @@ const MainPage: React.FC = () => {
     fetchMovies('')
   }, [])
 
-  console.log(movies);
-
   return (
     <>
       <SearchForm />
