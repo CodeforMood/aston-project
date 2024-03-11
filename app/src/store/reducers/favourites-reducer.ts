@@ -6,6 +6,7 @@ const favouritesState: favouritesStateType = {
 }
 
 export const favouritesReducer = (state = favouritesState, action: favouritesActions): favouritesStateType => {
+  console.log(state)
   switch (action.type) {
     case favouritesActionTypes.ADD_FAVOURITES:
       return {

@@ -4,7 +4,7 @@ import { getCurrentUserLogin, signIn, signOut, signUp } from "../../services/ser
 import {  toast } from "react-toastify";
 
 export const signInAction = (login: string, password: string) => {
-  return async (dispatch: Dispatch<AuthAction>) => {
+  return (dispatch: Dispatch<AuthAction>) => {
     try {
       signIn(login, password);
       dispatch({type: authActionTypes.SIGN_IN, payload: login})
@@ -16,7 +16,7 @@ export const signInAction = (login: string, password: string) => {
 }
 
 export const signUpAction = (login: string, password: string) => {
-  return async (dispatch: Dispatch<AuthAction>) => {
+  return (dispatch: Dispatch<AuthAction>) => {
     try {
       signUp(login, password);
       dispatch({type: authActionTypes.SIGN_UP, payload: login})
@@ -28,14 +28,14 @@ export const signUpAction = (login: string, password: string) => {
 }
 
 export const signOutAction = () => {
-  return async (dispatch: Dispatch<AuthAction>) => {
+  return (dispatch: Dispatch<AuthAction>) => {
     signOut();
     dispatch({type: authActionTypes.SIGN_OUT})
   }
 }
 
 export const checkAuthAction = () => {
-  return async (dispatch: Dispatch<AuthAction>) => {
+  return (dispatch: Dispatch<AuthAction>) => {
     const currentUser = getCurrentUserLogin()
     if(currentUser) {
       dispatch({type: authActionTypes.SIGN_IN, payload: currentUser})

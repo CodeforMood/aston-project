@@ -12,7 +12,7 @@ export type favouritesAddAction = {
 
 export type favouritesDeleteAction = {
   type: favouritesActionTypes.DELETE_FAVOURITES,
-  payload: number
+  payload: string
 }
 
 export type favouritesStateType = {
