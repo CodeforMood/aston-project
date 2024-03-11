@@ -1,11 +1,7 @@
-import { dateHistoryType } from './../../types/history';
 import { historyActionTypes, historyActions, historyStateType } from "../../types/history"
 
 const historyState: historyStateType = {
-  history: [{
-    name: '',
-    time: ''
-  } as dateHistoryType]
+  history: []
 }
 
 export const historyReducer = (state = historyState, action: historyActions): historyStateType => {

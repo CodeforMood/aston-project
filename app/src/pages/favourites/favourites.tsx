@@ -1,16 +1,16 @@
 import { RestOutlined } from '@ant-design/icons';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Movie } from '../../types/movies';
-import { deleteFavouritesAction } from '../../store/actions/favourites-actions';
 import { RootState } from '../../store/reducers';
+import { useAddFavouriteActions } from '../../hooks/useActions';
 
 const Favourites: React.FC = () => {
-  let dispatch = useDispatch();
+  let {deleteFavouritesAction} = useAddFavouriteActions();
   let { favourites } = useSelector((state: RootState) => state.favourites);
 
   const deleteFavourites = (id: string) => {
-    dispatch(deleteFavouritesAction(id));
+    deleteFavouritesAction(id);
   }
 
   return (

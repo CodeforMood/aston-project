@@ -3,7 +3,7 @@ import { Layout, theme, Row } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
 import FilmCard from '../../components/film-card/film-card';
-import SearchForm from '../../components/search-form/search-from';
+import SearchForm from '../../components/search-form/search-form';
 import { Movie } from '../../types/movies';
 
 const { Content } = Layout;

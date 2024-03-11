@@ -1,3 +1,4 @@
+import { dateHistoryType } from "../types/history";
 import { Movie } from "../types/movies";
 
 export function signUp(login: string, password: string) {
@@ -58,5 +59,23 @@ export function deleteFavoritesMoviesInLS(id: string) {
   if(currentUser) {
     const userInfo = getUserInfo(currentUser);
     localStorage.setItem(currentUser, JSON.stringify({...userInfo, favourites:[...userInfo.favourites.filter((item: Movie) => item["#IMDB_ID"] !== id.toString())]}))
+  }
+}
+
+export function setHistoryInLS(history: dateHistoryType) {
+  const currentUser = getCurrentUserLogin();
+
+  if(currentUser) {
+    const userInfo = getUserInfo(currentUser);
+    localStorage.setItem(currentUser, JSON.stringify({...userInfo, history:[...userInfo.history, history]}))
+  }
+}
+
+export function clearHistoryInLS() {
+  const currentUser = getCurrentUserLogin();
+
+  if(currentUser) {
+    const userInfo = getUserInfo(currentUser);
+    localStorage.setItem(currentUser, JSON.stringify({...userInfo, history:[]}))
   }
 }

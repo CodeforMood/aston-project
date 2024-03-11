@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { Layout } from 'antd';
 import MainPage from '../../pages/main-page/main-page'
 import Favourites from '../../pages/favourites/favourites'
@@ -9,25 +8,18 @@ import { HeaderNav } from '../header-nav/header-nav';
 import SignUpPage from '../../pages/sign-up-page/sign-up-page';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from '../protected-route/protected-route';
 import { AppRoute } from '../../const';
 import MovieDetail from '../../pages/movie-detail/movie-detail';
 
 const { Footer } = Layout;
 
 const App: React.FC = () => {
-
-  const [loggedIn, setLoggedIn] = useState(false);
   const { authStatus } = useTypedSelector(state => state.auth);
-
 
   const isAuthenticated = (): boolean => {
     return authStatus === 'AUTH' ? true : false
   };
-
-  useEffect(() => {
-    setLoggedIn(isAuthenticated());
-  }, [authStatus]);
 
   return (
     <Layout style={{ minHeight: '100vh', gap: '20px' }}>
@@ -37,19 +29,13 @@ const App: React.FC = () => {
         <Route path="/sign-up" element={authStatus !== 'AUTH' ? <SignUpPage /> : <MainPage />} />
         <Route path="/sign-in" element={authStatus !== 'AUTH' ? <SignInPage /> : <MainPage />} />
 
-        <Route path={AppRoute.Root} element={
-          <ProtectedRoute
-            element={<MainPage />}
-            componentName="MainPage"
-            loggedIn={loggedIn}
-          />}
-        />
+        <Route path={AppRoute.Root} element={<MainPage />}/>
 
         <Route path={AppRoute.Favourites} element={
           <ProtectedRoute
             element={<Favourites />}
             componentName="Favourites"
-            loggedIn={loggedIn}
+            loggedIn={isAuthenticated()}
           />}
         />
 
@@ -57,17 +43,11 @@ const App: React.FC = () => {
           <ProtectedRoute
             element={<History />}
             componentName="History"
-            loggedIn={loggedIn}
+            loggedIn={isAuthenticated()}
           />}
         />
 
-        <Route path={AppRoute.MovieDetail} element={
-          <ProtectedRoute
-            element={<MovieDetail />}
-            componentName="movieDetail"
-            loggedIn={loggedIn}
-          />}
-        />
+        <Route path={AppRoute.MovieDetail} element={<MovieDetail />}/>
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
