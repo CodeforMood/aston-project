@@ -5,6 +5,7 @@ import { useActions } from '../../hooks/useActions';
 import FilmCard from '../../components/film-card/film-card';
 import SearchForm from '../../components/search-form/search-form';
 import { Movie } from '../../types/movies';
+import { useQuery } from '../../hooks/query';
 
 const { Content } = Layout;
 
@@ -17,10 +18,12 @@ const MainPage: React.FC = () => {
   const { movies, error, loading } = useTypedSelector(state => state.movies);
   const { fetchMovies } = useActions()
 
+  const query = useQuery()
+  const searchHistory = query.get('search')
 
   useEffect(() => {
-    fetchMovies('')
-  }, [])
+    fetchMovies(searchHistory || '')
+  }, [searchHistory])
 
   return (
     <>
