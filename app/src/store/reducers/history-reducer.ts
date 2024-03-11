@@ -16,6 +16,11 @@ export const historyReducer = (state = historyState, action: historyActions): hi
       ...state,
       history: []
     }
+    case historyActionTypes.LOAD_HISTORY:
+      return {
+        ...state,
+        history: action.payload
+      }
     default:
       return state
   }

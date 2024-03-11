@@ -1,13 +1,20 @@
 import { Dispatch } from "redux"
 import { AuthAction, authActionTypes } from "../../types/auth";
-import { getCurrentUserLogin, signIn, signOut, signUp } from "../../services/services";
+import { getCurrentUserLogin, getUserInfo, signIn, signOut, signUp } from "../../services/services";
 import {  toast } from "react-toastify";
+import { favouritesActionTypes, favouritesActions } from "../../types/favourites";
+import { historyActionTypes, historyActions } from "../../types/history";
 
 export const signInAction = (login: string, password: string) => {
-  return (dispatch: Dispatch<AuthAction>) => {
+  return (dispatch: Dispatch<AuthAction | favouritesActions | historyActions>) => {
     try {
       signIn(login, password);
-      dispatch({type: authActionTypes.SIGN_IN, payload: login})
+      dispatch({type: authActionTypes.SIGN_IN, payload: login});
+
+      const userInfo = getUserInfo(login);
+
+      dispatch({type: favouritesActionTypes.LOAD_FAVOURITES, payload: userInfo.favourites});
+      dispatch({type: historyActionTypes.LOAD_HISTORY, payload: userInfo.history});
 
     } catch (error:any) {
       toast.warn(error.message)
