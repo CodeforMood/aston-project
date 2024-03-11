@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { historyActionTypes, historyActions } from "../../types/history"
+import { dateHistoryType, historyActionTypes, historyActions } from "../../types/history"
 import { clearHistoryInLS, setHistoryInLS } from "../../services/services";
 
 export const addHistoryAction = (name: string, time: string) => {
@@ -15,3 +15,8 @@ export const clearHistoryAction = () => {
     dispatch({ type: historyActionTypes.CLEAR_HISTORY});
   }
 }
+
+export const loadHistoryAction = (history: dateHistoryType) => ({
+  type: historyActionTypes.LOAD_HISTORY,
+  payload: history
+});

@@ -17,3 +17,9 @@ export const addFavouritesAction = (value: Movie) => {
       dispatch({ type: favouritesActionTypes.DELETE_FAVOURITES, payload: value});
     }
   }
+
+  export const loadFavouritesMoviesAction = (movies: Movie[]) => ({
+    type: favouritesActionTypes.LOAD_FAVOURITES,
+    payload: movies
+  });
+  

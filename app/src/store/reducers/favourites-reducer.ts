@@ -17,6 +17,11 @@ export const favouritesReducer = (state = favouritesState, action: favouritesAct
         ...state,
         favourites: state.favourites.filter(item => item["#IMDB_ID"] !== action.payload.toString())
       }
+    case favouritesActionTypes.LOAD_FAVOURITES: 
+      return {
+        ...state,
+        favourites: action.payload
+      }
     default:
       return state
   }
