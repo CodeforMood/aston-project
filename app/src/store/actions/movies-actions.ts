@@ -1,6 +1,7 @@
 
 import { Dispatch } from "redux";
 import { FetchMoviesAction, FetchMoviesErrorAction, FetchMoviesSuccessAction, Movie, MoviesAction, MoviesActionTypes } from "../../types/movies"
+import { getMovies } from "../../utils/Api";
 
 export const fetchMoviesRequest: () => FetchMoviesAction = () => ({ type: MoviesActionTypes.FETCH_MOVIES});
 
@@ -19,10 +20,7 @@ export const fetchMovies = (keyword: string) => {
   return async (dispatch: Dispatch<MoviesAction>) => {
     try {
       dispatch(fetchMoviesRequest())
-      const response = await fetch(`https://search.imdbot.workers.dev/?q=${keyword}`);
-      const json = await response.json();
-      const movies = await json.description;
-      // console.log(movies);
+      const movies = await getMovies(keyword);
       dispatch(fetchMoviesSuccess(movies))
     } catch (error) {
       dispatch(fetchMoviesError('Ошибка при загрузке запроса!'))

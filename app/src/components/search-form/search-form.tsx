@@ -1,14 +1,31 @@
-import { AutoComplete, Input, SelectProps } from "antd";
+import { AutoComplete, Input } from "antd";
 import { useState } from "react";
 import { useActions, useHistoryActions } from '../../hooks/useActions';
+import { DefaultOptionType } from "antd/es/select";
+import { Movie } from "../../types/movies";
+import { getMovies } from "../../utils/Api";
+
+type PatrialMovie = Partial<Movie>;
 
 const SearchForm: React.FC = () => {
-  const [options, setOptions] = useState<SelectProps<object>['options']>([]);
-  const {addHistoryAction} = useHistoryActions();
+  const { addHistoryAction } = useHistoryActions();
   const { fetchMovies } = useActions()
 
-  const handleSearch = (value: string) => {
-    setOptions([]);
+  const [options, setOptions] = useState<DefaultOptionType[]>([]);
+
+  const handleSearch = async (value: string) => {
+    if (!value) {
+      setOptions([]);
+      return;
+    }
+
+    try {
+      const movies = await getMovies(value)
+      const someArr = movies.map((movie: PatrialMovie) => movie['#TITLE'])
+      setOptions(someArr);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   const test = (value: string) => {
@@ -22,7 +39,7 @@ const SearchForm: React.FC = () => {
       popupMatchSelectWidth={252}
       style={{ padding: '0 48px', }}
       onSearch={handleSearch}
-      options={options}
+      options={options.map((option, index) => ({ value: option, label: option, key: index }))}
       size="large"
     >
       <Input.Search size="large" onSearch={test} placeholder="input here" enterButton />
