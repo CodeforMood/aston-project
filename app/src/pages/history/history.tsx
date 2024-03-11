@@ -1,17 +1,16 @@
-import { CloseOutlined } from '@ant-design/icons';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store/reducers';
 import { dateHistoryType } from '../../types/history';
-import { clearHistoryAction } from '../../store/actions/histiry-actions';
 import { Button } from 'antd';
+import { useHistoryActions } from '../../hooks/useActions';
 
 const History: React.FC = () => {
-  let dispatch = useDispatch();
+  const {clearHistoryAction} = useHistoryActions()
   let { history } = useSelector((state: RootState) => state.history)
 
   const clearHistory = () => {
-    dispatch(clearHistoryAction())
+    clearHistoryAction()
   }
 
   return (

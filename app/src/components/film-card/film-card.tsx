@@ -1,16 +1,15 @@
 import { HeartOutlined } from "@ant-design/icons";
 import { Button, Card, Col } from "antd";
 import Meta from "antd/es/card/Meta";
-import { useDispatch } from "react-redux";
 import { Movie } from "../../types/movies";
-import { addFavouritesAction, deleteFavouritesAction } from "../../store/actions/favourites-actions";
 import { useNavigate } from "react-router-dom";
 import { AppRoute } from "../../const";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useState } from "react";
+import { useAddFavouriteActions } from "../../hooks/useActions";
 
 const FilmCard: React.FC<{ movie: Movie }> = (props) => {
-  const dispatch = useDispatch();
+  const {addFavouritesAction, deleteFavouritesAction} = useAddFavouriteActions();
   const {favourites} = useTypedSelector(state => state.favourites);
   const isFavouriteCard = favourites.find((movieItem: Movie) => movieItem['#IMDB_ID'] === props.movie['#IMDB_ID'])
   const [isFavouriteMovie, setFavouriteMovie] = useState<boolean>(Boolean(isFavouriteCard));
@@ -19,12 +18,12 @@ const FilmCard: React.FC<{ movie: Movie }> = (props) => {
     console.log(isFavouriteMovie)
     if (isFavouriteMovie) {
       setFavouriteMovie(!isFavouriteMovie)
-      dispatch(deleteFavouritesAction(props.movie['#IMDB_ID']));
+      deleteFavouritesAction(props.movie['#IMDB_ID']);
 
       return
     }
     setFavouriteMovie(!isFavouriteMovie)
-    dispatch(addFavouritesAction(props.movie))
+    addFavouritesAction(props.movie)
   }
 
 

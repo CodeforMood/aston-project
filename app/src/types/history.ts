@@ -1,5 +1,3 @@
-import { Movie } from "./movies";
-
 export enum historyActionTypes {
   ADD_HISTORY = "ADD_HISTORY",
   CLEAR_HISTORY = "CLEAR_HISTORY"
