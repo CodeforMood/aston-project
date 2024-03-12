@@ -1,15 +1,20 @@
 import './custom-form.css'
 import { Button, FormControl, FormGroup, FormLabel, TextField } from '@mui/material';
 import { useFormik } from 'formik';
+import { Dispatch } from 'redux';
 import * as Yup from 'yup';
-import { validationFormik } from '../../utils/const'
+import { PageName, validationFormik } from '../../utils/const'
+import { AuthAction } from '../../types/auth';
+import { historyActions } from '../../types/history';
+import { favouritesActions } from '../../types/favourites';
 
 type CustomFormProps = {
   pageName: string,
+  action: (login: string, password: string) => (dispatch: Dispatch<AuthAction | favouritesActions | historyActions>) => void
 }
 
 
-function CustomForm({pageName}: CustomFormProps) {
+function CustomForm({pageName, action}: CustomFormProps) {
 
   const formik = useFormik({
     initialValues: {
@@ -26,15 +31,15 @@ function CustomForm({pageName}: CustomFormProps) {
         .required(validationFormik.requiredPassword)
       }),
       onSubmit: (values) => {
-        console.log('onSubmit', values)
+        action(values.email, values.password)
       }
     });
 
   return (
-    <form onSubmit={formik.handleSubmit} className='form'>
+    <form onSubmit={formik.handleSubmit} className='form' style={{display: "flex", height: 'calc(100vh - 171px)' , justifyContent: 'start'}}>
         <FormControl>
             <FormLabel>
-                <h1>SignUP</h1>
+                <h1>{pageName === PageName.SignUp? PageName.SignUp: PageName.SignIn}</h1>
             </FormLabel>
             <FormGroup>
                 <TextField

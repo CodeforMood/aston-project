@@ -1,72 +1,13 @@
 import './sign-up-page.css'
-import { Button, FormControl, FormGroup, FormLabel, TextField } from '@mui/material';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { useAuthActions } from '../../hooks/useActions';
-import { validationFormik } from '../../utils/const';
+import CustomForm from '../../components/custom-form/custom-form';
+import { PageName } from '../../utils/const';
 
 function SignUpPage() {
   const {signUpAction} = useAuthActions();
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .min(8, validationFormik.minSymbol)
-        .required(validationFormik.requiredEmail),
-      password: Yup.string()
-        .min(8, validationFormik.minSymbol)
-        .required(validationFormik.requiredPassword)
-      }),
-      onSubmit: (values) => {
-        signUpAction(values.email, values.password);
-      }
-    });
 
   return (
-    <form onSubmit={formik.handleSubmit} className='form'>
-        <FormControl>
-            <FormLabel>
-                <h1>SignUP</h1>
-            </FormLabel>
-            <FormGroup>
-                <TextField
-                    margin='normal'
-                    label='Use your email as login'
-                    id='email'
-                    type='email'
-                    name='email'
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                />
-
-                {formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p> : null}
-
-                <TextField
-                    margin='normal'
-                    type="password"
-                    label=" Your password"
-                    id='password'
-                    name='password'
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-
-                />
-
-                {formik.touched.password && formik.errors.password ? <p>{formik.errors.password}</p> : null}
-
-
-                <Button type={'submit'} variant={'contained'} color={'primary'}>
-                    Submit
-                </Button>
-            </FormGroup>
-        </FormControl>
-    </form>
+    <CustomForm pageName={PageName.SignUp} action={signUpAction}/>
   )
 }
 
