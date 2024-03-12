@@ -4,6 +4,7 @@ import { useActions, useHistoryActions } from '../../hooks/useActions';
 import { DefaultOptionType } from "antd/es/select";
 import { Movie } from "../../types/movies";
 import { getMovies } from "../../utils/Api";
+import { fetchError } from "../../utils/const";
 
 type PatrialMovie = Partial<Movie>;
 
@@ -24,7 +25,7 @@ const SearchForm: React.FC = () => {
       const someArr = movies.map((movie: PatrialMovie) => movie['#TITLE'])
       setOptions(someArr);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error(fetchError, error);
     }
   };
 

@@ -2,6 +2,7 @@
 import { Dispatch } from "redux";
 import { FetchMoviesAction, FetchMoviesErrorAction, FetchMoviesSuccessAction, Movie, MoviesAction, MoviesActionTypes } from "../../types/movies"
 import { getMovies } from "../../utils/Api";
+import { fetchError } from "../../utils/const";
 
 export const fetchMoviesRequest: () => FetchMoviesAction = () => ({ type: MoviesActionTypes.FETCH_MOVIES});
 
@@ -23,7 +24,7 @@ export const fetchMovies = (keyword: string) => {
       const movies = await getMovies(keyword);
       dispatch(fetchMoviesSuccess(movies))
     } catch (error) {
-      dispatch(fetchMoviesError('Ошибка при загрузке запроса!'))
+      dispatch(fetchMoviesError(fetchError))
     }
   }
 }

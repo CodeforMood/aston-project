@@ -4,7 +4,6 @@ export interface MoviesState {
   error: null | string,
 };
 
-// интерфейс одного фильма
 export interface Movie {
   '#ACTORS': string,
   '#AKA': string,
