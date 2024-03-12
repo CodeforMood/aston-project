@@ -4,13 +4,22 @@ import { useSelector } from 'react-redux';
 import { Movie } from '../../types/movies';
 import { RootState } from '../../store/reducers';
 import { useAddFavouriteActions } from '../../hooks/actions';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../utils/const';
 
 const Favourites: React.FC = () => {
   let {deleteFavouritesAction} = useAddFavouriteActions();
   let { favourites } = useSelector((state: RootState) => state.favourites);
+  let navigate = useNavigate()
 
   const deleteFavourites = (id: string) => {
     deleteFavouritesAction(id);
+  }
+
+  const handlePosterClick = (movie: Movie) => {
+    if (movie['#IMDB_ID']) {
+      return navigate(`${AppRoute.MovieDetail.slice(0, -4) }/${movie['#IMDB_ID']}`)
+    }
   }
 
   return (
@@ -42,6 +51,7 @@ const Favourites: React.FC = () => {
                 cursor: 'pointer',
               }}
               alt="форсаж"
+              onClick={() => handlePosterClick(item)}
             />
             <span
               style={{

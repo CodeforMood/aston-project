@@ -7,15 +7,22 @@ import { AppRoute } from "../../utils/const";
 import { useTypedSelector } from "../../hooks/typed-selector";
 import { useState } from "react";
 import { useAddFavouriteActions } from "../../hooks/actions";
+import { AuthStatus } from "../../types/auth";
 
 const FilmCard: React.FC<{ movie: Movie }> = (props) => {
+  const {authStatus} = useTypedSelector(state => state.auth)
   const {addFavouritesAction, deleteFavouritesAction} = useAddFavouriteActions();
   const {favourites} = useTypedSelector(state => state.favourites);
   const isFavouriteCard = favourites.find((movieItem: Movie) => movieItem['#IMDB_ID'] === props.movie['#IMDB_ID'])
+  const navigate = useNavigate()
   const [isFavouriteMovie, setFavouriteMovie] = useState<boolean>(Boolean(isFavouriteCard));
 
   const handleFavouriteButton = () => {
-    console.log(isFavouriteMovie)
+    if(authStatus !== AuthStatus.AUTH) {
+      navigate(AppRoute.SignIn);
+
+      return 
+    }
     if (isFavouriteMovie) {
       setFavouriteMovie(!isFavouriteMovie)
       deleteFavouritesAction(props.movie['#IMDB_ID']);
@@ -26,11 +33,7 @@ const FilmCard: React.FC<{ movie: Movie }> = (props) => {
     addFavouritesAction(props.movie)
   }
 
-
-
-  let navigate = useNavigate()
-
-  const navigateFilms = () => {
+  const handlePosterClick = () => {
     if (props.movie['#IMDB_ID']) {
       return navigate(`${AppRoute.MovieDetail.slice(0, -4) }/${props.movie['#IMDB_ID']}`)
     }
@@ -41,10 +44,10 @@ const FilmCard: React.FC<{ movie: Movie }> = (props) => {
       <Card
         hoverable
         style={{ minWidth: 180, maxWidth: 320, }}
-        cover={<img alt="example" src={props.movie['#IMG_POSTER']} onClick={navigateFilms} />}
+        cover={<img alt="example" src={props.movie['#IMG_POSTER'] } onClick={handlePosterClick} style={{height: 500 }}/>}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-          <Button icon={<HeartOutlined style={isFavouriteMovie ? { color: 'blue' } : { color: 'black' }} />} onClick={handleFavouriteButton} />
+          <Button icon={<HeartOutlined style={isFavouriteMovie && authStatus === AuthStatus.AUTH ? { color: 'blue' } : { color: 'black' }} />} onClick={handleFavouriteButton} />
           <Meta title={props.movie['#AKA']} />
         </div>
       </Card>

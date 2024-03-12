@@ -6,11 +6,11 @@ import { useLocation } from 'react-router-dom';
 import { Button } from 'antd';
 
 const MovieDetail: React.FC = () => {
-  let location = useLocation();
-  let stateMovie = useSelector((state: RootState) => state.movies.movies)
+  const location = useLocation();
+  const stateMovie = useSelector((state: RootState) => state.movies.movies)
 
-  let currentMovie = location.pathname.slice(9)
-  let movie = stateMovie.find((item: Movie) => item['#IMDB_ID'] === currentMovie);
+  const currentMovie = location.pathname.slice(9)
+  const movie = stateMovie.find((item: Movie) => item['#IMDB_ID'] === currentMovie);
 
   return (
     <div style={{ minHeight: 'calc(100vh - 171px)', display: 'flex' }}>
