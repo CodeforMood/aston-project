@@ -9,7 +9,7 @@ import SignUpPage from '../../pages/sign-up-page/sign-up-page';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import ProtectedRoute from '../protected-route/protected-route';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../utils/const';
 import MovieDetail from '../../pages/movie-detail/movie-detail';
 
 const { Footer } = Layout;

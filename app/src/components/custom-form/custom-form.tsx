@@ -2,6 +2,7 @@ import './custom-form.css'
 import { Button, FormControl, FormGroup, FormLabel, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { validationFormik } from '../../utils/const'
 
 type CustomFormProps = {
   pageName: string,
@@ -18,11 +19,11 @@ function CustomForm({pageName}: CustomFormProps) {
 
     validationSchema: Yup.object({
       email: Yup.string()
-        .min(8, 'Must be more than 8 characters')
-        .required('Email is required!'),
+        .min(8, validationFormik.minSymbol)
+        .required(validationFormik.requiredEmail),
       password: Yup.string()
-        .min(4, 'Must be more than 4 characters')
-        .required('Password is required!')
+        .min(8, validationFormik.minSymbol)
+        .required(validationFormik.requiredPassword)
       }),
       onSubmit: (values) => {
         console.log('onSubmit', values)

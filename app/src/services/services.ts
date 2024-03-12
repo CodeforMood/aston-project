@@ -1,10 +1,11 @@
 import { dateHistoryType } from "../types/history";
 import { Movie } from "../types/movies";
+import { validationSignInAndSignUp } from "../utils/const";
 
 export function signUp(login: string, password: string) {
   console.log(localStorage.getItem(login))
   if(localStorage.getItem(login)) {
-    throw new Error("Пользователь с таким именем уже есть");
+    throw new Error(validationSignInAndSignUp.alreadyEstablished);
   }
   localStorage.setItem(
     login, 
@@ -19,7 +20,7 @@ export function signUp(login: string, password: string) {
 
 export function signIn(login: string, password: string) {
   if(localStorage.getItem(login) === null) {
-    throw new Error("Неправильный логин")
+    throw new Error(validationSignInAndSignUp.wrongPassword)
   }
 
   const passwordFromLS = JSON.parse(localStorage.getItem(login) ?? '')?.password;
@@ -27,7 +28,7 @@ export function signIn(login: string, password: string) {
   if(passwordFromLS === password) {
     localStorage.setItem("currentUser", login);
   } else {
-    throw new Error("Неправильный пароль");
+    throw new Error(validationSignInAndSignUp.wrongPassword);
   }
 }
 

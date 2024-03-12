@@ -1,6 +1,6 @@
 import { Header } from "antd/es/layout/layout"
 import { Link, useNavigate } from "react-router-dom"
-import { AppRoute } from "../../const"
+import { AppRoute } from "../../utils/const"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import { AuthStatus } from "../../types/auth"
 import { Button } from "antd"

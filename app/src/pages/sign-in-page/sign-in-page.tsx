@@ -3,6 +3,7 @@ import { Button, FormControl, FormGroup, FormLabel, TextField } from '@mui/mater
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAuthActions } from '../../hooks/useActions';
+import { validationFormik } from '../../utils/const'
 
 function SignInPage() {
   const {signInAction} = useAuthActions();
@@ -15,11 +16,11 @@ function SignInPage() {
 
     validationSchema: Yup.object({
       email: Yup.string()
-        .min(8, 'Must be more than 8 characters')
-        .required('Email is required!'),
+        .min(8, validationFormik.minSymbol)
+        .required(validationFormik.requiredEmail),
       password: Yup.string()
-        .min(4, 'Must be more than 4 characters')
-        .required('Password is required!')
+        .min(8, validationFormik.minSymbol)
+        .required(validationFormik.requiredPassword)
       }),
       onSubmit: (values) => {
         signInAction(values.email, values.password);
