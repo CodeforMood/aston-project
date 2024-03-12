@@ -42,10 +42,15 @@ export const signOutAction = () => {
 }
 
 export const checkAuthAction = () => {
-  return (dispatch: Dispatch<AuthAction>) => {
+  return (dispatch: Dispatch<AuthAction | favouritesActions | historyActions>) => {
     const currentUser = getCurrentUserLogin()
     if(currentUser) {
       dispatch({type: authActionTypes.SIGN_IN, payload: currentUser})
+
+      const userInfo = getUserInfo(currentUser);
+
+      dispatch({type: favouritesActionTypes.LOAD_FAVOURITES, payload: userInfo.favourites});
+      dispatch({type: historyActionTypes.LOAD_HISTORY, payload: userInfo.history});
     }   
   }
 }
