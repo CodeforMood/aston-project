@@ -31,6 +31,7 @@ export function HeaderNav() {
       <Link to={AppRoute.Root} style={{display: 'flex', alignItems: 'center',}}> 
         <img src="img/logo.jpg" alt="logo" style={{ height: 36, width: 35 }} />
       </Link>
+      <div style={{fontSize:35, color:'white'}}>FilmFLex</div>
       <div style={{display: 'flex', gap: 100, alignItems: 'center'}}>
         { (authStatus === AuthStatus.AUTH) ? (
           <>
