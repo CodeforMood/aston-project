@@ -2,7 +2,7 @@ import { dateHistoryType } from "../types/history";
 import { Movie } from "../types/movies";
 import { validationSignInAndSignUp } from "../utils/const";
 
-export function signUp(login: string, password: string) {
+export function signUpLS(login: string, password: string) {
   console.log(localStorage.getItem(login))
   if(localStorage.getItem(login)) {
     throw new Error(validationSignInAndSignUp.alreadyEstablished);
@@ -18,9 +18,9 @@ export function signUp(login: string, password: string) {
   localStorage.setItem("currentUser", login)
 }
 
-export function signIn(login: string, password: string) {
+export function signInLS(login: string, password: string) {
   if(localStorage.getItem(login) === null) {
-    throw new Error(validationSignInAndSignUp.wrongPassword)
+    throw new Error(validationSignInAndSignUp.wrongPswdOrLgn)
   }
 
   const passwordFromLS = JSON.parse(localStorage.getItem(login) ?? '')?.password;
@@ -28,7 +28,7 @@ export function signIn(login: string, password: string) {
   if(passwordFromLS === password) {
     localStorage.setItem("currentUser", login);
   } else {
-    throw new Error(validationSignInAndSignUp.wrongPassword);
+    throw new Error(validationSignInAndSignUp.wrongPswdOrLgn);
   }
 }
 
@@ -41,7 +41,7 @@ export function getUserInfo (currentUser: string ) {
   return userInfo 
 };
 
-export function signOut () {
+export function signOutLS () {
   localStorage.setItem("currentUser", "");
 }
 

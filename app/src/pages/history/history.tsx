@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/reducers';
 import { dateHistoryType } from '../../types/history';
 import { Button } from 'antd';
-import { useHistoryActions } from '../../hooks/useActions';
+import { useHistoryActions } from '../../hooks/actions';
 import { getSearchUrl } from './history.utils';
 import { useNavigate } from 'react-router-dom';
 

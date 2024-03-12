@@ -1,9 +1,9 @@
 import { AutoComplete, Input } from "antd";
 import { useState } from "react";
-import { useActions, useHistoryActions } from '../../hooks/useActions';
+import { useActions, useHistoryActions } from '../../hooks/actions';
 import { DefaultOptionType } from "antd/es/select";
 import { Movie } from "../../types/movies";
-import { getMovies } from "../../utils/Api";
+import { getMovies } from "../../utils/api";
 import { fetchError } from "../../utils/const";
 
 type PatrialMovie = Partial<Movie>;

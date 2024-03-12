@@ -4,9 +4,9 @@ import Meta from "antd/es/card/Meta";
 import { Movie } from "../../types/movies";
 import { useNavigate } from "react-router-dom";
 import { AppRoute } from "../../utils/const";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useTypedSelector } from "../../hooks/typed-selector";
 import { useState } from "react";
-import { useAddFavouriteActions } from "../../hooks/useActions";
+import { useAddFavouriteActions } from "../../hooks/actions";
 
 const FilmCard: React.FC<{ movie: Movie }> = (props) => {
   const {addFavouritesAction, deleteFavouritesAction} = useAddFavouriteActions();

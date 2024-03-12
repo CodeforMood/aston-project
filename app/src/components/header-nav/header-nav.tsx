@@ -1,10 +1,10 @@
 import { Header } from "antd/es/layout/layout"
 import { Link, useNavigate } from "react-router-dom"
 import { AppRoute } from "../../utils/const"
-import { useTypedSelector } from "../../hooks/useTypedSelector"
+import { useTypedSelector } from "../../hooks/typed-selector"
 import { AuthStatus } from "../../types/auth"
 import { Button } from "antd"
-import { useAuthActions } from "../../hooks/useActions"
+import { useAuthActions } from "../../hooks/actions"
 
 
 export function HeaderNav() {

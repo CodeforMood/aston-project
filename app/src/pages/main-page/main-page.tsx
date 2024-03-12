@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Layout, theme, Row } from 'antd';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { useActions } from '../../hooks/useActions';
+import { useTypedSelector } from '../../hooks/typed-selector';
+import { useActions } from '../../hooks/actions';
 import FilmCard from '../../components/film-card/film-card';
 import SearchForm from '../../components/search-form/search-form';
 import { Movie } from '../../types/movies';
@@ -23,6 +23,7 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     fetchMovies(searchHistory || '')
+  // eslint-disable-next-line
   }, [searchHistory])
 
   return (

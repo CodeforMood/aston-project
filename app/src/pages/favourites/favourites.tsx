@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Movie } from '../../types/movies';
 import { RootState } from '../../store/reducers';
-import { useAddFavouriteActions } from '../../hooks/useActions';
+import { useAddFavouriteActions } from '../../hooks/actions';
 
 const Favourites: React.FC = () => {
   let {deleteFavouritesAction} = useAddFavouriteActions();

@@ -14,7 +14,7 @@ export enum validationFormik {
 };
 
 export enum validationSignInAndSignUp {
-  wrongPassword = 'Неправильный логин',
+  wrongPswdOrLgn = 'Неправильный логин или пароль',
   alreadyEstablished = 'Пользователь с таким именем уже есть'
 }
 

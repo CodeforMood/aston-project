@@ -1,7 +1,7 @@
 
 import { Dispatch } from "redux";
 import { FetchMoviesAction, FetchMoviesErrorAction, FetchMoviesSuccessAction, Movie, MoviesAction, MoviesActionTypes } from "../../types/movies"
-import { getMovies } from "../../utils/Api";
+import { getMovies } from "../../utils/api";
 import { fetchError } from "../../utils/const";
 
 export const fetchMoviesRequest: () => FetchMoviesAction = () => ({ type: MoviesActionTypes.FETCH_MOVIES});

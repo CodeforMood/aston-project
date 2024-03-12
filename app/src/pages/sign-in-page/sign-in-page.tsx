@@ -1,5 +1,5 @@
 import './sign-in-page.css'
-import { useAuthActions } from '../../hooks/useActions';
+import { useAuthActions } from '../../hooks/actions';
 import CustomForm from '../../components/custom-form/custom-form';
 import { PageName } from '../../utils/const';
 

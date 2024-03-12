@@ -3,23 +3,21 @@ import { deleteFavoritesMoviesInLS, setFavoritesMoviesInLS } from '../../service
 import { Movie } from '../../types/movies';
 import { favouritesActions, favouritesActionTypes } from './../../types/favourites';
 
-export const addFavouritesAction = (value: Movie) => {
-    return (dispatch: Dispatch<favouritesActions>) => {
-      setFavoritesMoviesInLS(value)
+export const loadFavouritesAction = (movies: Movie[]): favouritesActions => ({type: favouritesActionTypes.LOAD_FAVOURITES, payload: movies});
+export const addFavouriteMovie = (movie: Movie): favouritesActions => ({type: favouritesActionTypes.ADD_FAVOURITES, payload: movie});
+export const deleteFavouriteMovie = (value: string): favouritesActions => ({type: favouritesActionTypes.DELETE_FAVOURITES, payload: value})
 
-      dispatch({ type: favouritesActionTypes.ADD_FAVOURITES, payload: value})
+export const addFavouritesAction = (movie: Movie) => {
+    return (dispatch: Dispatch<favouritesActions>) => {
+      setFavoritesMoviesInLS(movie);
+      dispatch(addFavouriteMovie(movie));
     }
   }
 
   export const deleteFavouritesAction = (value: string) => {
     return (dispatch: Dispatch<favouritesActions>) => {
       deleteFavoritesMoviesInLS(value);
-      dispatch({ type: favouritesActionTypes.DELETE_FAVOURITES, payload: value});
+      dispatch(deleteFavouriteMovie(value));
     }
   }
-
-  export const loadFavouritesMoviesAction = (movies: Movie[]) => ({
-    type: favouritesActionTypes.LOAD_FAVOURITES,
-    payload: movies
-  });
   

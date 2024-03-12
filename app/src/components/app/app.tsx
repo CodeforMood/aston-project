@@ -7,7 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import { HeaderNav } from '../header-nav/header-nav';
 import SignUpPage from '../../pages/sign-up-page/sign-up-page';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/typed-selector';
 import ProtectedRoute from '../protected-route/protected-route';
 import { AppRoute } from '../../utils/const';
 import MovieDetail from '../../pages/movie-detail/movie-detail';
